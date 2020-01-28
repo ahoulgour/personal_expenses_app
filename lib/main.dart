@@ -38,7 +38,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('Flutter App'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        // mainAxisAlignment: MainAxisAlignment.start, // default is start so I comment it
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
@@ -47,6 +47,26 @@ class MyHomePage extends StatelessWidget {
             child: Card(
               color: Colors.amber,
               child: Text('CHART'),
+            ),
+          ),
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Amount'),
+                  ),
+                  FlatButton(child: Text('Add Transaction'), textColor: Colors.purple, onPressed: () {
+                    //TODO
+                  },),
+                ],
+              ),
             ),
           ),
           Column(
@@ -86,7 +106,8 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          DateFormat.yMMMd().format(tx.date), // format date using intl
+                          DateFormat.yMMMd()
+                              .format(tx.date), // format date using intl
                           style: TextStyle(
                             color: Colors.grey,
                           ),
