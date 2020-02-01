@@ -42,22 +42,25 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Flutter App'),
       ),
-      body: SingleChildScrollView( // para que no salga el warning al abrir el teclado
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.start, // default is start so I comment it
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Container(
-              // usamos Container para poder darle width ya que Column y Card solo expanden segun sus hijos
-              width: double.infinity,
-              child: Card(
-                color: Colors.amber,
-                child: Text('CHART'),
+      body: ListView(
+        // para que no salga el warning al abrir el teclado
+        children: <Widget>[
+          Column(
+            // mainAxisAlignment: MainAxisAlignment.start, // default is start so I comment it
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Container(
+                // usamos Container para poder darle width ya que Column y Card solo expanden segun sus hijos
+                width: double.infinity,
+                child: Card(
+                  color: Colors.amber,
+                  child: Text('CHART'),
+                ),
               ),
-            ),
-            UserTransactions(),
-          ],
-        ),
+              UserTransactions(),
+            ],
+          ),
+        ],
       ),
     );
   }
