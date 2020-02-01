@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './widgets/transaction_list.dart';
+import './widgets/user_transactions.dart';
 import './models/transaction.dart';
 
 void main() => runApp(MyApp());
@@ -32,9 +32,9 @@ class MyHomePage extends StatelessWidget {
 
   // String titleInput;
   // String amountInput;
-  final titleController = TextEditingController(); // connects to the text fields and listens the user input, so no need to implement a function onchange value
+  final titleController =
+      TextEditingController(); // connects to the text fields and listens the user input, so no need to implement a function onchange value
   final amountController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -42,53 +42,22 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Flutter App'),
       ),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.start, // default is start so I comment it
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            // usamos Container para poder darle width ya que Column y Card solo expanden segun sus hijos
-            width: double.infinity,
-            child: Card(
-              color: Colors.amber,
-              child: Text('CHART'),
-            ),
-          ),
-          Card(
-            elevation: 5,
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  TextField(
-                    decoration: InputDecoration(labelText: 'Title'),
-                    controller: titleController,
-                    // onChanged: (value) {
-                    //   titleInput = value;
-                    // },
-                  ),
-                  TextField(
-                    decoration: InputDecoration(labelText: 'Amount'),
-                    controller: amountController,
-                    // onChanged: (value) => amountInput = value,
-                  ),
-                  FlatButton(
-                    child: Text('Add Transaction'),
-                    textColor: Colors.purple,
-                    onPressed: () {
-                      // print(titleInput);
-                      // print(amountInput);
-                      print(titleController.text); // get data from controllers instead
-                      print(amountController.text);
-                    },
-                  ),
-                ],
+      body: SingleChildScrollView( // para que no salga el warning al abrir el teclado
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.start, // default is start so I comment it
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              // usamos Container para poder darle width ya que Column y Card solo expanden segun sus hijos
+              width: double.infinity,
+              child: Card(
+                color: Colors.amber,
+                child: Text('CHART'),
               ),
             ),
-          ),
-          TransactionList(),
-        ],
+            UserTransactions(),
+          ],
+        ),
       ),
     );
   }
