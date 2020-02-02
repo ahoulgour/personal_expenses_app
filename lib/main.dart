@@ -9,8 +9,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'Personal Expenses',
       home: MyHomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        accentColor: Colors.amber,
+      ),
     );
   }
 }
@@ -74,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: Text('PErsonal Expenses'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
@@ -93,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 // usamos Container para poder darle width ya que Column y Card solo expanden segun sus hijos
                 width: double.infinity,
                 child: Card(
-                  color: Colors.amber,
+                  color: Theme.of(context).primaryColorLight,
                   child: Text('CHART'),
                 ),
               ),
