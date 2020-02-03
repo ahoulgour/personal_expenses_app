@@ -53,19 +53,21 @@ class _MyHomePageState extends State<MyHomePage> {
   // connects to the text fields and listens the user input, so no need to implement a function onchange value
 //  final titleController = TextEditingController();
 //  final amountController = TextEditingController();
+
+
   final List<Transaction> _userTransactions = [
-    Transaction(
-      id: 't1',
-      title: 'New Shoes',
-      amount: 69.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Weekly Groceries',
-      amount: 19.99,
-      date: DateTime.now(),
-    ),
+//    Transaction(
+//      id: 't1',
+//      title: 'New Shoes',
+//      amount: 69.99,
+//      date: DateTime.now(),
+//    ),
+//    Transaction(
+//      id: 't2',
+//      title: 'Weekly Groceries',
+//      amount: 19.99,
+//      date: DateTime.now(),
+//    ),
   ];
 
   void _addNewTransaction(String txTitle, double txAmount) {
