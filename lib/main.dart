@@ -14,7 +14,27 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
         accentColor: Colors.amber,
-        fontFamily: 'Quicksand' // this name should match the name on pubspec.yaml file
+        // this name should match the name on pubspec.yaml
+        fontFamily: 'Quicksand',
+        textTheme: ThemeData.light().textTheme.copyWith(
+              title: TextStyle(
+                fontFamily: 'OpenSans',
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+
+        appBarTheme: AppBarTheme(
+          // theme for all bars of the app
+          textTheme: ThemeData.light().textTheme.copyWith(
+                // apply this style only to 'titles'
+                title: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+        ),
       ),
     );
   }
