@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_expenses_app/widgets/chart.dart';
 import 'package:personal_expenses_app/widgets/new_transaction.dart';
 import 'package:personal_expenses_app/widgets/transaction_list.dart';
 import './models/transaction.dart';
@@ -54,7 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
 //  final titleController = TextEditingController();
 //  final amountController = TextEditingController();
 
-
   final List<Transaction> _userTransactions = [
 //    Transaction(
 //      id: 't1',
@@ -69,6 +69,16 @@ class _MyHomePageState extends State<MyHomePage> {
 //      date: DateTime.now(),
 //    ),
   ];
+
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((trx) {
+      return trx.date.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
 
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
@@ -116,14 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // mainAxisAlignment: MainAxisAlignment.start, // default is start so I comment it
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Container(
-                // usamos Container para poder darle width ya que Column y Card solo expanden segun sus hijos
-                width: double.infinity,
-                child: Card(
-                  color: Theme.of(context).primaryColorLight,
-                  child: Text('CHART'),
-                ),
-              ),
+              Chart(_recentTransactions),
               TransactionList(_userTransactions),
             ],
           ),
