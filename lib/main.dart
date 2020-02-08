@@ -18,25 +18,31 @@ class MyApp extends StatelessWidget {
         errorColor: Colors.red[300],
         // this name should match the name on pubspec.yaml
         fontFamily: 'Quicksand',
-        textTheme: ThemeData.light().textTheme.copyWith(
-              title: TextStyle(
-                fontFamily: 'OpenSans',
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-              button: TextStyle(color: Colors.white),
-            ),
+        textTheme: ThemeData
+            .light()
+            .textTheme
+            .copyWith(
+          title: TextStyle(
+            fontFamily: 'OpenSans',
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
+          button: TextStyle(color: Colors.white),
+        ),
 
         appBarTheme: AppBarTheme(
           // theme for all bars of the app
-          textTheme: ThemeData.light().textTheme.copyWith(
-                // apply this style only to 'titles'
-                title: TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+          textTheme: ThemeData
+              .light()
+              .textTheme
+              .copyWith(
+            // apply this style only to 'titles'
+            title: TextStyle(
+              fontFamily: 'OpenSans',
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ),
     );
@@ -82,7 +88,8 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransaction(String txTitle, double txAmount, DateTime chosenDate) {
+  void _addNewTransaction(String txTitle, double txAmount,
+      DateTime chosenDate) {
     final newTx = Transaction(
       id: DateTime.now().toString(),
       title: txTitle,
@@ -117,16 +124,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      title: Text('Personal Expenses'),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () => _startAddNewTransaction(context),
+        ),
+      ],
+    );
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Personal Expenses'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () => _startAddNewTransaction(context),
-          ),
-        ],
-      ),
+      appBar: appBar,
       body: ListView(
         // para que no salga el warning al abrir el teclado
         children: <Widget>[
@@ -134,8 +142,13 @@ class _MyHomePageState extends State<MyHomePage> {
             // mainAxisAlignment: MainAxisAlignment.start, // default is start so I comment it
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Chart(_recentTransactions),
-              TransactionList(_userTransactions, _deleteTransaction),
+              Container(
+                // dynamic height of 40% of the screen
+                height: (MediaQuery.of(context).size.height - appBar.preferredSize.height - MediaQuery.of(context).padding.top) * 0.3,
+                child: Chart(_recentTransactions),),
+              Container(
+                  height: (MediaQuery.of(context).size.height - appBar.preferredSize.height - MediaQuery.of(context).padding.top) * 0.7,
+                  child: TransactionList(_userTransactions, _deleteTransaction)),
             ],
           ),
         ],
