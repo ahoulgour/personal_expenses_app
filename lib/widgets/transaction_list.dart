@@ -21,7 +21,7 @@ class TransactionList extends StatelessWidget {
                     style: Theme.of(context).textTheme.title,
                   ),
                   // provide spacing between elements
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
@@ -64,10 +64,12 @@ class TransactionList extends StatelessWidget {
                       ? FlatButton.icon(
                           textColor: Theme.of(context).errorColor,
                           onPressed: () => deleteTx(transactions[index].id),
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.delete,
                           ),
-                          label: Text('Delete'),
+                          //we can add a const to this because it will never change
+                    // so flutter won't rebuild this widget each time
+                          label: const Text('Delete'),
                         )
                       : IconButton(
                           icon: Icon(
