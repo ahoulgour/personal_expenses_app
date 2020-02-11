@@ -57,6 +57,7 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
+    print('build() NewTransaction');
     // SingleChildScrollView para poder sccrollear cuando esta el formulario tapado por el teclado
     return SingleChildScrollView(
       child: Card(
