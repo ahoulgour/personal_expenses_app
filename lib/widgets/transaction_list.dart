@@ -36,15 +36,16 @@ class TransactionList extends StatelessWidget {
               );
             },
           )
-        : ListView.builder(
-            // render list elements lazily using builder insted of creating todos los elementos a la vez
-            itemBuilder: (ctx, index) {
-              return TransactionItem(
-                transaction: transactions[index],
-                deleteTx: deleteTx,
-              );
-            },
-            itemCount: transactions.length,
-          );
+        // en vez de ListView.builder() usaremos list con children para poder usar los keys y arreglar el problema de keys en listas
+        : ListView(children: [
+            // ... se llama spread operator, es como flatmap, saca lista de lista para no tener una lista dentro de otra
+            ...transactions
+                .map((tx) => TransactionItem(
+                      key: ValueKey(tx.id),
+                      transaction: tx,
+                      deleteTx: deleteTx,
+                    ))
+                .toList()
+          ]);
   }
 }
